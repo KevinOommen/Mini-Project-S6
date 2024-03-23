@@ -1,15 +1,30 @@
-import { useState } from 'react'
-import AuthComponent from '../components/AuthComponent'
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import './App.css'
+import Userauth from '../components/Userauth'
+import GetOTP from '../components/GetOTP'
+import Sidebar from '../components/Sidebar' 
+import Payment from '../components/Payment'
+import AdminAuth from '../components/Adminauth'
+import Admindashboard from '../components/Admindashboard'
+import Kitchen from '../components/Kitchen'
 
-const App=()=> {
-  const [count, setCount] = useState(0)
+function App() {
 
   return (
-    <>
-      <AuthComponent />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/auth' element={<Userauth/>}></Route>
+        <Route path="/getotp" element={<GetOTP/>}></Route>
+
+        <Route path='/order' element={<Sidebar/>}></Route>
+        <Route path='/payment' element={<Payment/>}></Route>
+        
+        <Route path='/adminauth' element={<AdminAuth/>}></Route>
+        <Route path='/dashboard/:id' element={<Admindashboard/>}>
+          <Route path="/dashboard/:id/kitchen" element={<Kitchen/>}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
-
 export default App;
