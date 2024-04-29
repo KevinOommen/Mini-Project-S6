@@ -7,6 +7,7 @@ import Payment from '../components/Payment'
 import AdminAuth from '../components/Adminauth'
 import Admindashboard from '../components/Admindashboard'
 import Kitchen from '../components/Kitchen'
+import Scanner from '../components/Scanner'
 
 function App() {
 
@@ -16,10 +17,13 @@ function App() {
         <Route path='/auth' element={<Userauth/>}></Route>
         <Route path="/getotp" element={<GetOTP/>}></Route>
 
+        <Route path='/scanner' element={<Scanner/>}></Route>
         <Route path='/order' element={<Sidebar/>}></Route>
         <Route path='/payment' element={<Payment/>}></Route>
         
         <Route path='/adminauth' element={<AdminAuth/>}></Route>
+
+        
         <Route path='/dashboard/:id' element={<Admindashboard/>}>
           <Route path="/dashboard/:id/kitchen" element={<Kitchen/>}></Route>
         </Route>

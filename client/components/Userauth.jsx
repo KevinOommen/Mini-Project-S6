@@ -7,7 +7,7 @@ const AuthComponent=()=> {
 
   return (
     <div className="flex flex-col w-full">
-      <Card className="max-w-full w-[340px] h-[400px]" >
+      <Card className="max-w-full w-[340px] h-[400px] my-4" >
         <CardBody className="overflow-hidden" >
           <Tabs
             fullWidth
