@@ -2,7 +2,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import './App.css'
 import Userauth from '../components/Userauth'
 import GetOTP from '../components/GetOTP'
-import Sidebar from '../components/Sidebar' 
+import Order from '../components/order' 
 import Payment from '../components/Payment'
 import AdminAuth from '../components/Adminauth'
 import Admindashboard from '../components/Admindashboard'
@@ -17,9 +17,10 @@ function App() {
       <Routes>
         <Route path='/auth' element={<Userauth/>}></Route>
         <Route path="/getotp" element={<GetOTP/>}></Route>
+        <Route path="/menu" element={<Menu/>}></Route>
 
         <Route path='/scanner' element={<Scanner/>}></Route>
-        <Route path='/order' element={<Sidebar/>}></Route>
+        <Route path='/order' element={<Order/>}></Route>
         <Route path='/payment' element={<Payment/>}></Route>
         <Route path='/adminauth' element={<AdminAuth/>}></Route>
 
