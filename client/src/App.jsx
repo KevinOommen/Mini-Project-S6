@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path='/auth' element={<Userauth/>}></Route>
         <Route path="/getotp" element={<GetOTP/>}></Route>
-
+        <Route path='/menu' element={<Menu/>}></Route>
         <Route path='/scanner' element={<Scanner/>}></Route>
         <Route path='/order' element={<Sidebar/>}></Route>
         <Route path='/payment' element={<Payment/>}></Route>
