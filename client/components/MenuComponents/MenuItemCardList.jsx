@@ -87,7 +87,6 @@ export default function MenuItemCard() {
                 radius="full"
                 variant="light"
               >
-                <NextIcon />
               </Button>
               <Button
                 isIconOnly

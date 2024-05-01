@@ -1,4 +1,3 @@
-import React from 'react';
 import NavMenu from './MenuComponents/NavMenu';
 import MenuItemCardList from './MenuComponents/MenuItemCardList';
 

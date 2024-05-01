@@ -3,7 +3,7 @@ import './App.css'
 import Userauth from '../components/Userauth'
 import GetOTP from '../components/GetOTP'
 import Sidebar from '../components/Sidebar' 
-import Payment from '../components/Payment'
+import Payment from '../components/Payment/Payment'
 import AdminAuth from '../components/Adminauth'
 import Admindashboard from '../components/Admindashboard'
 import Kitchen from '../components/Kitchen'
@@ -18,6 +18,7 @@ function App() {
         <Route path='/auth' element={<Userauth/>}></Route>
         <Route path="/getotp" element={<GetOTP/>}></Route>
 
+        <Route path='/menu' element={<Menu/>}></Route>
         <Route path='/scanner' element={<Scanner/>}></Route>
         <Route path='/order' element={<Sidebar/>}></Route>
         <Route path='/payment' element={<Payment/>}></Route>
