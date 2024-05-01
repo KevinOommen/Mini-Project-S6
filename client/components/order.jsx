@@ -21,9 +21,9 @@ export default function App() {
     { name: "Porotta", price: 10 },
     { name: "Chili Chicken", price: 140 },
     { name: "Gobi Manchurian", price: 100 },
-    { name: "Shake", price: 80 }, // Added item
-    { name: "Tea", price: 10 }, // Added item
-    { name: "Juice", price: 40 }, // Added item
+    { name: "Shake", price: 80 }, 
+    { name: "Tea", price: 10 }, 
+    { name: "Juice", price: 40 }, 
   ];
 
   const totalAmount = orderItems.reduce((sum, item) => sum + item.price, 0);
