@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-import NavMenu from './MenuComponents/NavMenu';
-import MenuItemCardList from './MenuComponents/MenuItemCardList';
-
-
-=======
-import React from 'react';
 import BottomNav from './MenuComponents/BottomNav';
 //import NavMenu from './MenuComponents/NavMenu';
 //import MenuItemCardList from './MenuComponents/MenuItemCardList';
 import Box from '@mui/material/Box';
 import MenuItemCard from './MenuComponents/MenuItemCard';
->>>>>>> 9560b6101ec72ff266dab74a1554e0cd8b05d010
 
 const data = [
     {
