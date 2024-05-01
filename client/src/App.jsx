@@ -19,6 +19,7 @@ function App() {
         <Route path="/getotp" element={<GetOTP/>}></Route>
         <Route path="/menu" element={<Menu/>}></Route>
 
+        <Route path='/menu' element={<Menu/>}></Route>
         <Route path='/scanner' element={<Scanner/>}></Route>
         <Route path='/order' element={<Order/>}></Route>
         <Route path='/payment' element={<Payment/>}></Route>
