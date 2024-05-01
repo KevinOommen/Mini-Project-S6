@@ -10,7 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@chakra-ui/react": "^2.8.2",
+=======
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@fontsource/roboto": "^5.0.13",
+    "@mui/icons-material": "^5.15.15",
+    "@mui/material": "^5.15.15",
+>>>>>>> 9560b6101ec72ff266dab74a1554e0cd8b05d010
     "@nextui-org/react": "^2.2.10",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",

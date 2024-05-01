@@ -17,7 +17,10 @@ function App() {
       <Routes>
         <Route path='/auth' element={<Userauth/>}></Route>
         <Route path="/getotp" element={<GetOTP/>}></Route>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9560b6101ec72ff266dab74a1554e0cd8b05d010
         <Route path='/menu' element={<Menu/>}></Route>
         <Route path='/scanner' element={<Scanner/>}></Route>
         <Route path='/order' element={<Sidebar/>}></Route>
