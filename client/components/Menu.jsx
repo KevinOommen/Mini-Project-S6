@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import BottomNav from './MenuComponents/BottomNav';
 import Box from '@mui/material/Box';
 import MenuItemCard from './MenuComponents/MenuItemCard';
@@ -5,40 +6,15 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 
-const data = [
-  {
-    title: "Paneer Curry",
-    img: "../img/menuItems/paneer.jpg",
-    price: "$10",
-  },
-  {
-    title: "Chicken Curry",
-    img: "../img/menuItems/paneer.jpg",
-    price: "$10",
-  },
-  {
-    title: "Aloo Gobi",
-    img: "../img/menuItems/paneer.jpg",
-    price: "$25",
-  },
-  {
-      title: "Paneer Curry",
-      img: "../img/menuItems/paneer.jpg",
-      price: "$10",
-    },
-    {
-      title: "Chicken Curry",
-      img: "../img/menuItems/paneer.jpg",
-      price: "$10",
-    },
-    {
-      title: "Aloo Gobi",
-      img: "../img/menuItems/paneer.jpg",
-      price: "$25",
-    },
-];
-
 const Menu = () => {
+  const [menuItems, setMenuItems] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/get-menu')
+      .then(response => response.json())
+      .then(data => setMenuItems(data));
+  }, []);
+
   return (
     <>
       <Box sx={{ width: "100%", textAlign: 'center', padding: "5%" }}>
@@ -63,8 +39,8 @@ const Menu = () => {
         />
       </Box>
       <Box sx={{ width: "100%" }}>
-        {data.map((d, index) => (
-          <MenuItemCard key={index} title={d.title} img={d.img} price={d.price} />
+        {menuItems.map((item, index) => (
+          <MenuItemCard key={index} title={item.Name} img={item.image} price={item.Price} />
         ))}
       </Box>
       <BottomNav />

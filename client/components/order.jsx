@@ -1,22 +1,11 @@
 import React from "react";
 import { Button } from "@nextui-org/react";
+import { useNavigate } from 'react-router-dom';
 import "./orderstyle.css";
 
 export default function App() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const navigate = useNavigate();
 
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
   const orderItems = [
     { name: "Porotta", qty: 2, price: 10 },
     { name: "Chili Chicken", qty: 1, price: 140 },
@@ -27,6 +16,10 @@ export default function App() {
   ];
 
   const totalAmount = orderItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+  const handlePlaceOrder = () => {
+    navigate('/popup');
+  };
 
   return (
     <div className="p-6 flex flex-col items-center" style={{ backgroundColor: 'white' }}> 
@@ -46,7 +39,7 @@ export default function App() {
           <span>${totalAmount.toFixed(2)}</span>
         </div>
         <div className="mt-6 pt-4" style={{ marginTop: '20px' }}> 
-          <Button color="primary" size="lg" style={{ width: '100%' }}>
+          <Button color="primary" size="lg" style={{ width: '100%' }} onClick={handlePlaceOrder}>
             Place Order
           </Button>
         </div>

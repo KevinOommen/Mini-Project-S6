@@ -10,6 +10,8 @@ import Kitchen from '../components/Kitchen'
 import Menu from '../components/Menu'
 import Scanner from '../components/Scanner'
 import BottomNav from '../components/MenuComponents/BottomNav';
+import Popup from '../components/popup' 
+
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         <Route path='/order' element={<Order/>} />
         <Route path='/payment' element={<Payment/>} />
         <Route path='/adminauth' element={<AdminAuth/>} />
+        <Route path='/popup' element={<Popup/>} />
         <Route path='/dashboard/:id' element={<Admindashboard/>}>
           <Route path="/dashboard/:id/kitchen" element={<Kitchen/>} />
         </Route>
