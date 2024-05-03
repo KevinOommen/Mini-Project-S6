@@ -1,4 +1,4 @@
-import BottomNav from './BottomNav';
+import BottomNav from './BottomNavK';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import ItemCard from './ItemCard';

@@ -26,19 +26,19 @@ router.get("/makehistory/:id", async (req, res) => {
         .from('kitchenPendingOrders')
         .select()
         .eq('id', req.params.id);
-        console.log('Hello'+ data);
-        console.log(data[0].id);
+        console.log(data[0]) ;
 
         const { data1, error1 } = await supabase
         .from('kitchenHistory')
-        .insert({id :data[0].id,
-            item_id: data[0].item_id,
+        .insert({item_id: data[0].item_id,
             name: data[0].name,
             img: data[0].img,
-            quantity: data[0].quantity,
+            quantity: data[0].quantity, 
             price: data[0].price,
             table_no: data[0].table_no,
-        });
+        })
+        console.log(error1);
+        if (error1) throw error1;
         const { error2 } = await supabase
         .from('kitchenPendingOrders')
         .delete()
