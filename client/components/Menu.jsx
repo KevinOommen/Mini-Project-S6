@@ -1,8 +1,7 @@
 import BottomNav from './MenuComponents/BottomNav';
-//import NavMenu from './MenuComponents/NavMenu';
-//import MenuItemCardList from './MenuComponents/MenuItemCardList';
 import Box from '@mui/material/Box';
 import MenuItemCard from './MenuComponents/MenuItemCard';
+import Logo from './Logo';
 
 const data = [
     {
@@ -40,18 +39,19 @@ const data = [
 const Menu = () => {
    
     return (
-        <>
-        <Box sx={{width:"100%", textAlign:'center',padding:"5%"}}>
-        </Box>
-        <Box sx={{width:"100%"}}>
-        
-           {data.map((d) => (
-           <MenuItemCard title={d.title} img={d.img} price={d.price}/>
-           ))}
-        </Box> 
-       
-        <BottomNav/>
-        </>
+      <>
+      <Logo/>
+      <Box sx={{width:"100%", textAlign:'center',padding:"5%"}}>
+      </Box>
+      <Box sx={{width:"100%"}}>
+      
+         {data.map((d, index) => (
+         <MenuItemCard key={index} title={d.title} img={d.img} price={d.price}/>
+         ))}
+      </Box> 
+      
+      <BottomNav/>
+      </>
     );
 };
 
