@@ -1,24 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import BottomNav from './MenuComponents/BottomNav';
 import Box from '@mui/material/Box';
 import MenuItemCard from './MenuComponents/MenuItemCard';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
+import Logo from './Logo';
+import axios from 'axios';
 
 
 const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/get-menu')
-      .then(response => response.json())
-      .then(data => setMenuItems(data));
+    const fetchMenu = async () => {
+      const { data } = await axios.get("http://localhost:4000/menu/getmenu");
+      setMenuItems(data);
+    };
+
+    fetchMenu();
   }, []);
 
   return (
     <>
-      <Box sx={{ width: "100%", textAlign: 'center', padding: "5%" }}>
+      <Logo />
+      <Box sx={{ width: "100%", textAlign: 'center', padding: "2%" }}>
         <TextField
           variant="outlined"
           placeholder="Search..."
@@ -27,7 +33,7 @@ const Menu = () => {
             '& fieldset': {
               borderRadius: '25px',
             },
-            width: '80%',
+            width: '95%',
             backgroundColor: 'white',
           }}
           InputProps={{
@@ -41,7 +47,7 @@ const Menu = () => {
       </Box>
       <Box sx={{ width: "100%" }}>
         {menuItems.map((item, index) => (
-          <MenuItemCard key={index} title={item.Name} img={item.image} price={item.Price} />
+          <MenuItemCard key={index} title={item.Name} img={item.image} price={"$"+item.Price} />
         ))}
       </Box>
       

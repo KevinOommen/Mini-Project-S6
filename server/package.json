@@ -1,4 +1,8 @@
 {
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.42.7",
     "cors": "^2.8.5",
