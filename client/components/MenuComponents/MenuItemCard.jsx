@@ -19,17 +19,25 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 //counter button with increment and decrement
-const Counter = ({count, setCount, setAdded})=> {
+const Counter = ({count, setCount, item, onAddToOrder})=> {
   const handleIncrement = () => {
-    setCount(count + 1);
+    const newCount = count + 1;
+    setCount(newCount);
+    onAddToOrder(item, newCount);
+
+
   }
   const handleDecrement = () => {
     if (count === 1){
-      setAdded(false);
       setCount(0);
+      onAddToOrder(item, 0);
+
     }
-    else if(count > 1)
-      setCount(count - 1);
+    else if(count > 1){
+      const newCount = count - 1;
+      setCount(newCount);
+      onAddToOrder(item, newCount);
+    }
       
   }
   return (
@@ -42,18 +50,11 @@ const Counter = ({count, setCount, setAdded})=> {
   )
 }
 
-export default function MenuItemCard({title, img, price}) {
-  const [added, setAdded] = React.useState(false);
+export default function MenuItemCard({item, onAddToOrder}) {
   const [count, setCount] = React.useState(0);
   const handleClick = () => {
-    if(count==0){
-      setAdded(true);
       setCount(1);
-    }
-    else
-      setAdded(false);
-    console.log("Added: ", added);
-    
+      onAddToOrder(item, 1);
   }
 
   return (
@@ -61,22 +62,22 @@ export default function MenuItemCard({title, img, price}) {
         <CardMedia
         component="img"
         sx={{ width: 151 }}
-        image={img}
-        alt="Paneer Curry"
+        image={item.img}
+        alt="Food Item"
          />
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5">
-            {title}
+            {item.title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-            {price}
+            {item.price}
           </Typography>
         </CardContent>
         <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>    
         {
-        added ? 
-        <Counter count={count} setCount={setCount} setAdded={setAdded}/>
+        (count > 0) ? 
+        <Counter count={count} setCount={setCount} item={item} onAddToOrder={onAddToOrder}/>
           :  
           <ColorButton variant="contained" onClick={handleClick}>
           Add
