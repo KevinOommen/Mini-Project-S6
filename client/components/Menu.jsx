@@ -1,6 +1,5 @@
+import { useState, useEffect } from 'react';
 import BottomNav from './MenuComponents/BottomNav';
-//import NavMenu from './MenuComponents/NavMenu';
-//import MenuItemCardList from './MenuComponents/MenuItemCardList';
 import Box from '@mui/material/Box';
 import MenuItemCard from './MenuComponents/MenuItemCard';
 import { useEffect } from 'react';
@@ -95,4 +94,3 @@ const Menu = () => {
 };
 
 export default Menu;
-/* */
