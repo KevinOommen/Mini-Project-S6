@@ -3,7 +3,7 @@ import { Button } from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom';
 import "./orderstyle.css";
 
-export default function App() {
+export default function Order() {
   const navigate = useNavigate();
   const [orderItems, setOrderItems] = useState([]);
 

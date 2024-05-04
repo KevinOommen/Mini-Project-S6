@@ -50,8 +50,13 @@ const Counter = ({count, setCount, item, onAddToOrder})=> {
   )
 }
 
-export default function MenuItemCard({item, onAddToOrder}) {
+export default function MenuItemCard({item, countIn, onAddToOrder}) {
   const [count, setCount] = React.useState(0);
+  React.useEffect(() => {
+    setCount(countIn);
+  }, [countIn]);
+
+  
   const handleClick = () => {
       setCount(1);
       onAddToOrder(item, 1);
