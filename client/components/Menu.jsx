@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 
+
 const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
 
@@ -43,6 +44,7 @@ const Menu = () => {
           <MenuItemCard key={index} title={item.Name} img={item.image} price={item.Price} />
         ))}
       </Box>
+      
       <BottomNav />
     </>
   );

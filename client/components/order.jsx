@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom';
 import "./orderstyle.css";
 
 export default function App() {
   const navigate = useNavigate();
+  const [orderItems, setOrderItems] = useState([]);
 
-  const orderItems = [
-    { name: "Porotta", qty: 2, price: 10 },
-    { name: "Chili Chicken", qty: 1, price: 140 },
-    { name: "Gobi Manchurian", qty: 1, price: 100 },
-    { name: "Shake", qty: 1, price: 80 }, 
-    { name: "Tea", qty: 1, price: 10 }, 
-    { name: "Juice", qty: 1, price: 40 }, 
-  ];
+  useEffect(() => {
+    fetch('http://localhost:3000/ordersummary')
+      .then(response => response.json())
+      .then(data => setOrderItems(data));
+  }, []);
 
   const totalAmount = orderItems.reduce((sum, item) => sum + item.price * item.qty, 0);
 
@@ -28,7 +26,7 @@ export default function App() {
         <hr />
         {orderItems.map((item, index) => (
           <div key={index} className="flex justify-between py-2 item-text">
-            <span>{item.name}</span>
+            <span>{item.item}</span>
             <span>{item.qty}</span>
             <span>${(item.price * item.qty).toFixed(2)}</span>
           </div>
