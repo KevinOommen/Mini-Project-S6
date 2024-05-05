@@ -7,6 +7,7 @@ import Payment from '../components/PaymentComponents/Payment'
 import Menu from '../components/Menu'
 import Scanner from '../components/Scanner'
 import PaymentHandler from '../components/P'
+import Admin from '../components/Admin'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/kitchen/pending' element={<Pending/>} />
         <Route path='/kitchen/history' element={<History/>} />
         <Route path='/p' element={<PaymentHandler/>} />
+        <Route path='admin' element={<Admin/>} />
       </Routes>
     </BrowserRouter>
   );
