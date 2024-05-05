@@ -43,7 +43,8 @@ const Counter = ({count, setCount, item, onAddToOrder})=> {
   return (
     <Box>
       <Button onClick={handleIncrement}>+</Button>
-      <Button>{count}</Button>
+      <Button sx={{width: '40%'}}>{count}</Button>
+      <Button >{count}</Button>
       <Button onClick={handleDecrement}>-</Button>
       
     </Box>
