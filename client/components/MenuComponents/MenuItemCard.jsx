@@ -5,10 +5,12 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button } from '@nextui-org/button';
 import { styled } from '@mui/material/styles';
 import green from '@mui/material/colors/green';
 import {grey} from '@mui/material/colors';
+import Button from '@mui/material/Button';
+import { ButtonGroup } from '@mui/material';
+
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: grey[900],
@@ -42,10 +44,11 @@ const Counter = ({count, setCount, item, onAddToOrder})=> {
   }
   return (
     <Box>
-      <Button onClick={handleIncrement}>+</Button>
-      <Button sx={{width: '40%'}}>{count}</Button>
-      <Button onClick={handleDecrement}>-</Button>
-      
+      <ButtonGroup size="large" aria-label="large button group">
+      <Button onClick={handleIncrement} size="large">+</Button>
+      <Button size="large">{count}</Button>
+      <Button onClick={handleDecrement} size="large">-</Button>
+      </ButtonGroup>
     </Box>
   )
 }

@@ -10,13 +10,17 @@ const theme = createTheme({
   },
 });
 
-export default function Types() {
+export default function Logo({tableNo}) {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ width: '100%', maxWidth: 500 , display: 'flex' , alignItems:'center', justifyContent:'center', backgroundColor: green[100], padding:'5px'}}>
+      <Box sx={{ width: '100%', maxWidth: 500 , display: 'flex' , alignItems:'center', justifyContent:'space-between', backgroundColor: green[100], padding:'5px'}}>
         <Typography variant="h3" gutterBottom>
           Smart Menu
         </Typography>
+        <Typography variant="h5" gutterBottom>
+          Table No: {tableNo}
+        </Typography>
+
       </Box>
     </ThemeProvider>
   );

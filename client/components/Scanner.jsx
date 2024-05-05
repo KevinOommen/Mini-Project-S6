@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-
+import { useNavigate } from 'react-router-dom';
 // Styles
 import "./scannerstyles.css";
 import Logo from "./Logo";  
@@ -13,6 +13,8 @@ const QrReader = () => {
   const videoEl = useRef(null);
   const qrBoxEl = useRef(null);
   const [qrOn, setQrOn] = useState(true);
+  const navigate = useNavigate();
+
 
   // Result
   const [scannedResult, setScannedResult] = useState("");
@@ -21,6 +23,13 @@ const QrReader = () => {
   const onScanSuccess = (result) => {
     console.log(result);
     setScannedResult(result?.data);
+    // Redirect to Menu Page
+    if (result?.data) {
+        localStorage.setItem("tableNo", result?.data);
+        navigate("/menu",);
+        //set local storage for table number
+    }
+
   };
 
   // Fail
