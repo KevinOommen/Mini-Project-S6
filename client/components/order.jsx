@@ -3,7 +3,7 @@ import { Button } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import "./orderstyle.css";
 import axios from "axios";
-import {PaymentComponent} from "./P";
+import PaymentComponent from "./P";
 import BottomNav from "./MenuComponents/BottomNav";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
