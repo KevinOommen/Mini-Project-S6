@@ -24,18 +24,6 @@ app.get("/get-menu", async (req, res) => {
     res.json(data);
   }
 });
-app.get("/ordersummary", async (req, res) => {
-  const { data, error } = await supabase
-    .from('Order_Summary')
-    .select('id,item, qty, price');
-
-  if (error) {
-    console.error(error);
-    res.status(500).json({ error: 'An error occurred while fetching menu items' });
-  } else {
-    res.json(data);
-  }
-});
 
 
 app.listen(port, () =>
