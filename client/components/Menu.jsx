@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import BottomNav from './MenuComponents/BottomNav';
 import Box from '@mui/material/Box';
 import MenuItemCard from './MenuComponents/MenuItemCard';
@@ -33,6 +34,8 @@ const data = [
       
   ];
 const Menu = () => {
+    //obtain table number from the localStorage
+    const tableNo = JSON.parse(localStorage.getItem("tableNo"));
     const [itemList, setItemList] = useState([]);
     const [addedItems, setAddedItems] = useState([]);
     //fetch added items from local storage
@@ -83,7 +86,7 @@ const Menu = () => {
    
     return (
         <>
-        <Logo/>
+        <Logo tableNo={tableNo}/>
         <Box sx={{width:"100%", textAlign:'center',padding:"5%"}}>
         </Box>
           <Box sx={{width:"100%"}}>
