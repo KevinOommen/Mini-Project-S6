@@ -3,13 +3,24 @@ import { Button } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import "./orderstyle.css";
 import axios from "axios";
+import {PaymentComponent} from "./P";
 import BottomNav from "./MenuComponents/BottomNav";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
-import {checkoutHandler} from "./PaymentComponents/Payment";
+import { checkoutHandler } from "./PaymentComponents/Payment";
+import Logo from "./Logo";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@mui/material";
 
 export default function Order() {
   const [open, setOpen] = useState(false);
@@ -33,30 +44,37 @@ export default function Order() {
 
   const navigate = useNavigate();
   const [orderItems, setOrderItems] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const { data } = await axios.get("http://localhost:4000/menu/getordersummary");
+        // const { data } = await axios.get(
+        //   "http://localhost:4000/menu/getordersummary"
+        // );
+        // setOrderItems(data);
+        const data = JSON.parse(localStorage.getItem("addedItems") || '[]');
+        const totalAmount = data.reduce((total, item) => total + item.Price * item.count, 0);
+        setTotalAmount(totalAmount);
         setOrderItems(data);
+        console.log(orderItems)
       } catch (error) {
-        console.error('An error occurred while fetching the order:', error);
+        console.error("An error occurred while fetching the order:", error);
       }
     };
-  
+
     fetchOrder();
   }, []);
 
-  const totalAmount = orderItems.reduce(
-    (sum, item) => sum + item.price * item.qty,
-    0
-  );
 
-  // const handlePlaceOrder = () => {
-  //   navigate("/popup");
-  // };
 
   return (
     <>
+      <Logo />
+      <div style={{ height: "20px" }} />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      />
       <div
         className="p-6 flex flex-col items-center"
         style={{ backgroundColor: "white" }}
@@ -66,19 +84,37 @@ export default function Order() {
           style={{ paddingTop: "20px" }}
         >
           <div className="font">ORDER SUMMARY</div>
-          <hr />
-          {orderItems.map((item, index) => (
-            <div key={index} className="flex justify-between py-2 item-text">
-              <span>{item.item}</span>
-              <span>{item.qty}</span>
-              <span>${(item.price * item.qty).toFixed(2)}</span>
-            </div>
-          ))}
-          <hr />
-          <div className="flex justify-between font-bold mt-4 total-text">
-            <span>Total</span>
-            <span>${totalAmount.toFixed(2)}</span>
-          </div>
+          <TableContainer component={Paper}>
+            <Table
+              sx={{ minWidth: 300, fontFamily: "Roboto, Arial, sans-serif" }}
+              aria-label="simple table"
+            >
+              <TableHead>
+                <TableRow>
+                  <TableCell>Item</TableCell>
+                  <TableCell align="right">Quantity</TableCell>
+                  <TableCell align="right">Price</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {orderItems.map((item, index) => (
+                  <TableRow key={index}>
+                    <TableCell component="th" scope="row">
+                      {item.Name}
+                    </TableCell>
+                    <TableCell align="right">{item.count}</TableCell>
+                    <TableCell align="right">
+                      ${(item.Price * item.count).toFixed(2)}
+                    </TableCell>
+                  </TableRow>
+                ))}
+                <TableRow>
+                  <TableCell colSpan={2}>Total</TableCell>
+                  <TableCell align="right">${totalAmount.toFixed(2)}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
           <div className="mt-6 pt-4" style={{ marginTop: "20px" }}>
             <Button
               color="primary"
@@ -96,10 +132,14 @@ export default function Order() {
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button onClick={handlePay} color="primary">
+                <Button
+                  onClick={handlePay}
+                  checkoutHandler={checkoutHandler}
+                  color="primary"
+                >
                   Pay Now
                 </Button>
-                <Button onClick={handleClose} checkoutHandler={checkoutHandler} color="secondary">
+                <Button onClick={handleClose} color="secondary">
                   Pay Later
                 </Button>
               </DialogActions>

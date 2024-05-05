@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home";
+import checkoutHandler from "./Payment";
 
 import PaymentSuccess from "./PaymentSuccess";
 
@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<checkoutHandler />} />
         <Route path="/paymentsuccess" element={<PaymentSuccess />} />
         
       </Routes>
