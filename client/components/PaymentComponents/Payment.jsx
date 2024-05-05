@@ -3,44 +3,48 @@
 import axios from "axios";
 
 export const checkoutHandler = async (amount) => {
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>;
-  const {
-    data: { key },
-  } = await axios.get("http://localhost:4000/api/getkey");
+    try {
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>;
+      const {
+        data: { key },
+      } = await axios.get("http://localhost:4000/api/getkey");
+  
+      const {
+        data: { order },
+      } = await axios.post("http://localhost:4000/api/checkout", {
+        amount,
+      });
+  
+      const options = {
+        key,
+        amount: order.amount,
+        currency: "INR",
+        name: "Smart Menu",
+        description: "Eazy Order, Eazy Pay",
+        image:
+          "https://github.com/KevinOommen/Mini-Project-S6/blob/master/client/img/Smart%20Menu_blk.png",
+        order_id: order.id,
+        callback_url: "http://localhost:4000/api/paymentverification",
+        notes: {
+          address: "Razorpay Corporate Office",
+        },
+        theme: {
+          color: "#121212",
+        },
+      };
+            const script = document.createElement("script");
+            script.src = "https://checkout.razorpay.com/v1/checkout.js";
+            script.onload = () => {
+                const razor = new window.Razorpay(options);
+                razor.open();
+            };
+            document.body.appendChild(script);
+        
 
-  const {
-    data: { order },
-  } = await axios.post("http://localhost:4000/api/checkout", {
-    amount,
-  });
-
-  const options = {
-    key,
-    amount: order.amount,
-    currency: "INR",
-    name: "Smart Menu",
-    description: "Eazy Order, Eazy Pay",
-    image:
-      "https://github.com/KevinOommen/Mini-Project-S6/blob/master/client/img/Smart%20Menu_blk.png",
-    order_id: order.id,
-    callback_url: "http://localhost:4000/api/paymentverification",
-    notes: {
-      address: "Razorpay Corporate Office",
-    },
-    theme: {
-      color: "#121212",
-    },
-  };
-  function checkoutHandler() {
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.onload = () => {
-      const razor = new window.Razorpay(options);
-      razor.open();
-    };
-    document.body.appendChild(script);
+        
+} catch (error) {
+    console.error('An error occurred:', error);
   }
-  checkoutHandler();
 };
 
 export default checkoutHandler;

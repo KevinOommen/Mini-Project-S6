@@ -6,8 +6,7 @@ import History from '../components/KitchenComponents/History'
 import Payment from '../components/PaymentComponents/Payment'
 import Menu from '../components/Menu'
 import Scanner from '../components/Scanner'
-import Popup from '../components/Popup' 
-
+import PaymentHandler from '../components/P'
 
 function App() {
   return (
@@ -17,9 +16,9 @@ function App() {
         <Route path='/' element={<Scanner/>} />
         <Route path='/menu/order' element={<Order/>} />
         <Route path='/menu/payment' element={<Payment/>} />
-        <Route path='/popup' element={<Popup/>} />
         <Route path='/kitchen/pending' element={<Pending/>} />
         <Route path='/kitchen/history' element={<History/>} />
+        <Route path='/p' element={<PaymentHandler/>} />
       </Routes>
     </BrowserRouter>
   );

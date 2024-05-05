@@ -15,7 +15,7 @@ export default function BottomNav() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
     if (newValue === 1) {
-      navigate('/order');
+      navigate('/menu/order');
     } else if (newValue === 0) {
       navigate('/menu');
     }
