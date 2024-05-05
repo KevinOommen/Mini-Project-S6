@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 // Styles
 import "./scannerstyles.css";
+import Logo from "./Logo";  
 // Qr Scanner
 import QrScanner from "qr-scanner";
 import QrFrame from "../src/assets/qr-frame.svg";
@@ -60,6 +61,8 @@ const QrReader = () => {
   }, [qrOn]);
 
   return (
+    <>
+    <Logo />
     <div className="qr-reader">
       {/* QR */}
       <video ref={videoEl}></video>
@@ -88,6 +91,7 @@ const QrReader = () => {
         </p>
       )}
     </div>
+    </>
   );
 };
 

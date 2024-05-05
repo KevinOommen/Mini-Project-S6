@@ -19,4 +19,19 @@ router.get("/getmenu", async (req, res) => {
     }
   });
 
+  router.get("/getordersummary", async (req, res) => {
+    const { data, error } = await supabase
+      .from('orderSummary')
+      .select('id,item, qty, price');
+    if (error) throw error;
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred while fetching menu items' });
+    } else {
+      res.json(data);
+    }
+  });
+
+  
+
   export default router;

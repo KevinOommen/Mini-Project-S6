@@ -60,7 +60,7 @@ export const paymentVerification = async (req, res) => {
     // });
 
     res.redirect(
-      `http://localhost:5173/payment`
+      `http://localhost:5173/order`
     );
   } else {
     res.status(400).json({

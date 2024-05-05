@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import BottomNav from './MenuComponents/BottomNav';
 import Box from '@mui/material/Box';
 import MenuItemCard from './MenuComponents/MenuItemCard';
-import React from 'react';
-
+import axios from 'axios';
+import Logo from "./Logo";
 const data = [
     {
       id: 1,
@@ -33,22 +33,27 @@ const data = [
       
   ];
 const Menu = () => {
-    const [itemList, setItemList] = useState(data);
+    const [itemList, setItemList] = useState([]);
     const [addedItems, setAddedItems] = useState([]);
     //fetch added items from local storage
     useEffect(() => {
       const storedItems = JSON.parse(localStorage.getItem("addedItems"));
       if(storedItems){
         setAddedItems(storedItems);
-      }
+      }   
     }, []);
     useEffect(() => {
-        fetch("/api/menu")
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data);
-            setItemList(data);
-        });
+      const fetchMenu = async () => {
+        try {
+          const { data } = await axios.get("http://localhost:4000/menu/getmenu");
+          console.log(data);
+          setItemList(data);
+        } catch (error) {
+          console.error('An error occurred while fetching the menu:', error);
+        }
+      };
+    
+      fetchMenu();
     }, []);
 
     const addToOrder = (item, count) => {
@@ -78,6 +83,7 @@ const Menu = () => {
    
     return (
         <>
+        <Logo/>
         <Box sx={{width:"100%", textAlign:'center',padding:"5%"}}>
         </Box>
           <Box sx={{width:"100%"}}>
