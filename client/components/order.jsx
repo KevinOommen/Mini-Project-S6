@@ -3,14 +3,13 @@ import { Button } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import "./orderstyle.css";
 import axios from "axios";
-import {PaymentComponent} from "./P";
+import PaymentButton from "./P";
 import BottomNav from "./MenuComponents/BottomNav";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
-import { checkoutHandler } from "./PaymentComponents/Payment";
 import Logo from "./Logo";
 import {
   Table,
@@ -23,6 +22,7 @@ import {
 } from "@mui/material";
 
 export default function Order() {
+  const tableNo = JSON.parse(localStorage.getItem("tableNo"));
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -36,6 +36,9 @@ export default function Order() {
 
   const handleClose = () => {
     setOpen(false);
+    const data = JSON.parse(localStorage.getItem("addedItems") || '[]');
+    const tableNo = JSON.parse(localStorage.getItem("tableNo"));
+    axios.post("http://localhost:4000/kitchen/addpending", {data,tableNo});
   };
 
   const handlePlaceOrder = () => {
@@ -69,7 +72,7 @@ export default function Order() {
 
   return (
     <>
-      <Logo />
+      <Logo tableNo={tableNo}/>
       <div style={{ height: "20px" }} />
       <link
         rel="stylesheet"
@@ -132,13 +135,7 @@ export default function Order() {
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button
-                  onClick={handlePay}
-                  checkoutHandler={checkoutHandler}
-                  color="primary"
-                >
-                  Pay Now
-                </Button>
+                <PaymentButton />
                 <Button onClick={handleClose} color="secondary">
                   Pay Later
                 </Button>
