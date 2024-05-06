@@ -1,4 +1,4 @@
-//create a new component called AdminDashboard
+//create  new component called AdminDashboard
 import React from 'react';
 import AdminDashboardTable from './AdminDashboardTable';
 import FloatingAddButton from './FloatingAddButton';
